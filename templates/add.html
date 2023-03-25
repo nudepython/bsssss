@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Büşra'nın Kitaplığı</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- JS -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery_1.3.2.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/js/jqueryui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/easing.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.cycle.all.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<!-- ENDS JS -->
+<!-- superfish -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/superfish-custom.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/superfish-1.4.8/js/hoverIntent.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/superfish.js') }}"></script>
+<!-- ENDS superfish -->
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/spring.css') }}">
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" media="screen" href="css/ie-hacks.css" />
+<script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+<script>/* EXAMPLE */ DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!-- ENDS CSS -->
+<!-- Cufon -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/cufon-yui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bebas_400.font.js') }}"></script>
+<script type="text/javascript">Cufon.replace('.custom', { fontFamily: 'bebas', hover: true });</script>
+<!-- /Cufon -->
+</head>
+  <body>
+<!-- WRAPPER -->
+<div id="wrapper">
+  <!-- navigation -->
+  <ul id="nav" class="sf-menu">
+    <li class="custom"><a href="{{ url_for('index') }}">ANASAYFA</a></li>
+    <li class="custom"><a href="{{ url_for('search') }}">KITAPLAR</a></li>
+    <li class="custom"><a href="{{ url_for('add') }}">KITAP EKLE</a></li>
+    </li>
+  </ul>
+  <!-- ENDS navigation -->
+  <!-- HEADER -->
+  <div id="header"> <a href="{{ url_for('index') }}"><img src="static/img/logo.png" alt="" id="logo" /></a> <img src="static/img/nav-arrow.png" alt="" id="arrow" class="arrow-home" />
+    <form action="{{ url_for('search') }}" method="post" id="search">
+      <p>
+        <input type="text" onfocus="defaultInput(this)" onblur="clearInput(this)" name="keyword" id="keyword" value="Search..." />
+      </p>
+      <p>
+        <input type="submit" id="go" value="" />
+      </p>
+      <div class="clear"></div>
+    </form>
+  </div>
+  <!-- ENDS HEADER -->
+  <!-- MAIN -->
+<div id="main">
+    <p class="section-title"><span class="title custom">Kitap Ekle</span></p>
+    <!-- left-content -->
+    <center> <div class="contact-left">
+      <h5 class="custom">Okudugun Kitaplari Burdan Ekleyebilirsin Balim </h5>
+      &#128149; &#128149;
+      <!-- form -->
+      <form method="POST" action="{{ url_for('add') }}">
+        <fieldset>
+          <p>
+            <label for="title">Kitap Adı:</label>
+            <input type="text" id="title" name="title"><br>
+          </p>
+          <p>
+            <label for="author">Yazar:</label>
+            <input type="text" id="author" name="author"><br>
+          </p>
+          <p>
+            <label for="genre">Türü:</label>
+            <input type="text" id="genre" name="genre"><br>
+          </p>
+          <p>
+            <label for="start_date">Başlama Tarihi</label>
+            <input type="datetime" id="start_date" name="start_date"><br>
+          </p>
+          <p>
+            <label for="end_date">Bitirme Tarihi:</label>
+            <input type="datetime" id="end_date" name="end_date"><br>
+          </p>
+          
+          <p>
+            <label for="rating">Puanın:</label><br>
+            <input type="number" id="rating" name="rating" min="0" max="10"><br>
+          </p>
+          <p>
+            <label for="description">Notlarım:</label><br>
+            <textarea id="description" name="description"></textarea><br><br>
+          </p>
+          <p>
+            <input type="submit" value="Ekle">
+          </p>
+        </fieldset>
+      <!-- ENDS form -->
+    </div></center>
+    <!-- ENDS left-content -->
+    <!-- right-content -->
+    <div class="contact-right">
+      <center><h4">&#x1F4D7; &#x1F4D8; &#x1F4D9;</h4></center>
+      <br><br>
+      <div class="taped-image"><span></span><em></em><img src="static/img/map.png" alt="" /></div>
+    </div>
+    <!-- ENDS right-content -->
+  </div>
+  <!-- ENDS MAIN -->
+  </body>
+</html>

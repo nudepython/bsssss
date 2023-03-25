@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Büşra'nın Kitaplığı</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- JS -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery_1.3.2.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/js/jqueryui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/easing.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.cycle.all.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/custom.js') }}"></script>
+<!-- ENDS JS -->
+<!-- superfish -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/superfish-custom.css') }}">
+<script type="text/javascript" src="{{ url_for('static', filename='js/superfish-1.4.8/js/hoverIntent.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/superfish.js') }}"></script>
+<!-- ENDS superfish -->
+<!-- CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/spring.css') }}">
+<!--[if IE 6]>
+<link rel="stylesheet" type="text/css" media="screen" href="css/ie-hacks.css" />
+<script type="text/javascript" src="js/DD_belatedPNG.js"></script>
+<script>/* EXAMPLE */ DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!-- ENDS CSS -->
+<!-- Cufon -->
+<script type="text/javascript" src="{{ url_for('static', filename='js/cufon-yui.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bebas_400.font.js') }}"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cufon/1.09i/cufon-yui.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/cufon/1.09i/fonts/bebas/400.font.js"></script>
+<script type="text/javascript">Cufon.replace('.custom', { fontFamily: 'bebas', hover: true });</script>
+
+<!-- /Cufon -->
+</head>
+  <body>
+<!-- WRAPPER -->
+<div id="wrapper">
+  <!-- navigation -->
+  <ul id="nav" class="sf-menu">
+    <li class="custom"><a href="{{ url_for('index') }}">ANASAYFA</a></li>
+    <li class="custom"><a href="{{ url_for('search') }}">KITAPLAR</a></li>
+    <li class="custom"><a href="{{ url_for('add') }}">KITAP EKLE</a></li>
+    </li>
+  </ul>
+  <!-- ENDS navigation -->
+  <!-- HEADER -->
+  <div id="header"> <a href="{{ url_for('index') }}"><img src="static/img/logo.png" alt="" id="logo" /></a> <img src="static/img/nav-arrow.png" alt="" id="arrow" class="arrow-home" />
+    <form action="{{ url_for('search') }}" method="post" id="search" onsubmit="searchBooks(event)">
+      <p>
+        <input type="text" onfocus="defaultInput(this)" onblur="clearInput(this)" name="keyword" id="keyword" value="Search..." />
+      </p>
+      <p>
+        <input type="submit" id="go" value="" />
+      </p>
+      <div class="clear"></div>
+    </form>
+    
+  </div>
+  <!-- ENDS HEADER -->
+  <div id="main">
+    <!-- slideshow -->
+    <div id="slideshow">
+      <ul id="slides">
+        <li><img src="static/slides/01.jpg" alt="" /></li>
+        <li><img src="static/slides/02.jpg" alt="" /></li>
+        <li><img src="static/slides/03.jpg" alt="" /></li>
+      </ul>
+      <span></span> <a href="#"><img src="static/img/prev-slide.png" alt="" id="prev" /></a> <a href="#"><img src="img/next-slide.png" alt="" id="next" /></a> </div>
+    <!-- ENDS slideshow -->
+    <p class="custom excerpt">Busra'nin Kitapligi: <a href="#">Roman</a>, <a href="#">Hikaye </a>, <a href="#">Biyografi</a> ...</p>
+    <!-- more galleries -->
+    <div class="one-col">
+      <div class="col">
+        <h3 class="custom title-1">Kitapligim</h3>
+        <h5 class="toggle-trigger custom"><a href="{{ url_for('add') }}">Okudugum Kitaplar</a></h5>
+        <div class="toggle-container">
+          <div class="block">
+            <ul class="more-galleries ">
+              {% if books %}
+              {% for book in books %}
+              <li><a href="#">{{ book.title }}, <span>Yazar: {{ book.author }}, </span> <span> Puanım: {{ book.rating }}, </span> <span> Türü: {{ book.genre }}, </span> <span>Başlama Tarihi: {{ book.start_date}}</span> <span>Bitiş Tarihi: {{ book.end_date}}</span><span>Notlarım: {{ book.description }}</span></a></li>
+              <form method="POST" action="{{ url_for('delete_book', book_id=book.id) }}">
+                <button type="submit">Sil</button>
+              </form>
+              <br>              
+              {% endfor %}
+              {% else %}
+                <p>Hiç kitap yok.</p>
+              {% endif %}
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ENDS more galleries -->
+  </body>
+</html>
